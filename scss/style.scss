@@ -14,10 +14,10 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: start;
 }
 
 header {
+  margin: 0 auto;
   h1 {
     font-size: calc(1vw + 5vh + .5vmin);
     font-family: 'Merienda', cursive;
@@ -35,7 +35,7 @@ header {
 
 .btn {
   background-color: $primary;
-  color: $secondary;
+  color: #fff;
   font-size: 100%;
   outline: none !important;
   box-shadow: none !important;
@@ -44,7 +44,23 @@ header {
   outline: none;
 }
 
+.chat-window li{
+  min-width: 50vw;
+  background-color: $secondary;
+  color: #fff;
+}
+
 .new-chat div, .name-update div{
-  max-width: 800px;
-  margin: 0 auto;
+  min-width: calc(20vw + 20vh + 20px)
+}
+
+.username {
+  color: #EF476F;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.time {
+  font-size: 0.8rem;
+  color: gray;
 }
