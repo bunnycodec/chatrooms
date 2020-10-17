@@ -50,8 +50,11 @@ header {
   color: #fff;
 }
 
-.new-chat div, .name-update div{
-  min-width: calc(20vw + 20vh + 20px)
+.new-chat div, .new-name div{
+  min-width: calc(25vw + 25vh + 20px);
+  input {
+    box-shadow: none !important;
+  }
 }
 
 .username {

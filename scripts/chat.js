@@ -8,10 +8,11 @@ class Chatroom {
 
   async addChat(message) {
     const now = new Date()
+    const name = this.username.charAt(0).toUpperCase() + this.username.slice(1)
     const chat = {
       message,
       room: this.room,
-      username: this.username,
+      username: name,
       time: firebase.firestore.Timestamp.fromDate(now)
     }
     const response = await this.chats.add(chat)
@@ -24,14 +25,27 @@ class Chatroom {
       .orderBy('time')
       .onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
-          if(change.type === 'added') {
+          if(change.type === 'added' || change.type === 'removed') {
             callback(change.doc.data())
           }
         })
       })
   }
 
+  deleteChats(name) {
+    this.chats
+      .where('username', '==', name)
+      .get()
+      .then(snapshot => {
+        snapshot.docs.forEach(doc => {
+          this.chats.doc(doc.id).delete()
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   updateName(username) {
+    console.log('username changed')
     this.username = username
   }
 
