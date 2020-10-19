@@ -20,6 +20,13 @@ class Chatroom {
   }
 
   getChats(callback) {
+    // Buttons Styling Changes
+    document.querySelectorAll('.chat-rooms .btn').forEach(btn => {
+      btn.style.backgroundColor = '#fff'
+      btn.style.color = '#9067C6'
+    })
+    document.getElementById(this.room).style.backgroundColor = '#9067C6'
+    document.getElementById(this.room).style.color = '#fff'
     this.unsub = this.chats
       .where('room', '==', this.room)
       .orderBy('time')
@@ -45,13 +52,12 @@ class Chatroom {
   }
 
   updateName(username) {
-    console.log('username changed')
     this.username = username
+    localStorage.setItem('username', this.username)
   }
 
   updateRoom(room) {
     this.room = room
-    console.log('Room Updated')
     if(this.unsub) {
       this.unsub
     }
